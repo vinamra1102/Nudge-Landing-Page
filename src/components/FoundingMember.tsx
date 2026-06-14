@@ -5,9 +5,14 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 type Status = "idle" | "loading" | "success" | "error-invalid" | "error-network"
 
-export default function FoundingMember() {
+interface FoundingMemberProps {
+  onJoin: () => void
+  wasAlreadyJoined: boolean
+}
+
+export default function FoundingMember({ onJoin, wasAlreadyJoined }: FoundingMemberProps) {
   const [email, setEmail] = useState("")
-  const [status, setStatus] = useState<Status>("idle")
+  const [status, setStatus] = useState<Status>(wasAlreadyJoined ? "success" : "idle")
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -22,10 +27,12 @@ export default function FoundingMember() {
 
     setTimeout(() => {
       setStatus("success")
+      onJoin()
     }, 800)
   }
 
   const isDone = status === "success"
+  const joinedViaHero = wasAlreadyJoined && status === "success" && email === ""
 
   return (
     <section
@@ -57,7 +64,9 @@ export default function FoundingMember() {
             className="text-white text-lg mt-10 animate-fade-rise"
             style={{ fontFamily: "'Fredoka', sans-serif" }}
           >
-            You're on the founding list! 🎉
+            {joinedViaHero
+              ? "You're on the list — thanks for joining early! 🎉 We'll be in touch with founding member perks."
+              : "You're on the founding list! 🎉"}
           </p>
         ) : (
           <>

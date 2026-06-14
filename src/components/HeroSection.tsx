@@ -5,9 +5,14 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 type Status = "idle" | "loading" | "success" | "error-invalid" | "error-network"
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  onJoin: () => void
+  wasAlreadyJoined: boolean
+}
+
+export default function HeroSection({ onJoin, wasAlreadyJoined }: HeroSectionProps) {
   const [email, setEmail] = useState("")
-  const [status, setStatus] = useState<Status>("idle")
+  const [status, setStatus] = useState<Status>(wasAlreadyJoined ? "success" : "idle")
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -22,6 +27,7 @@ export default function HeroSection() {
 
     setTimeout(() => {
       setStatus("success")
+      onJoin()
     }, 800)
   }
 

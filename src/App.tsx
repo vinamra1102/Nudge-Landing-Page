@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
 import HowItWorks from './components/HowItWorks'
@@ -7,6 +8,8 @@ import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 
 function App() {
+  const [hasJoinedWaitlist, setHasJoinedWaitlist] = useState(false)
+
   return (
     <>
       <section className="relative min-h-screen overflow-hidden">
@@ -28,13 +31,13 @@ function App() {
 
         <div className="relative z-[2]">
           <Header />
-          <HeroSection />
+          <HeroSection onJoin={() => setHasJoinedWaitlist(true)} wasAlreadyJoined={hasJoinedWaitlist} />
         </div>
       </section>
 
       <HowItWorks />
       <WhyNudge />
-      <FoundingMember />
+      <FoundingMember onJoin={() => setHasJoinedWaitlist(true)} wasAlreadyJoined={hasJoinedWaitlist} />
       <FAQ />
       <div className="h-px bg-white/10 max-w-4xl mx-auto" />
       <Footer />
