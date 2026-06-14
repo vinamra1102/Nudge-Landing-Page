@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 350 100% 96%;
+    --foreground: 345 95% 20%;
+    --muted-foreground: 0 0% 17%;
+    --primary: 345 95% 20%;
+    --primary-foreground: 350 100% 96%;
+    --secondary: 340 100% 88%;
+    --secondary-foreground: 345 95% 20%;
+    --accent: 330 35% 51%;
+    --accent-foreground: 350 100% 96%;
+    --border: 340 30% 85%;
+    --input: 340 30% 90%;
+    --radius: 0.75rem;
+
+    --font-display: 'Fredoka', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
