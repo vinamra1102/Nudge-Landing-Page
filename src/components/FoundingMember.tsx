@@ -121,7 +121,7 @@ export default function FoundingMember() {
         )}
 
         <p className="text-white/50 text-sm mt-3">
-          Join 500+ already on the list
+          Be among the first to join
         </p>
       </div>
     </section>

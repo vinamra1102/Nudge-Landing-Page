@@ -111,7 +111,7 @@ export default function HeroSection() {
       )}
 
       <p className="text-white/60 text-sm mt-4">
-        Join 500+ already on the list
+        Be among the first to join
       </p>
     </section>
   )
