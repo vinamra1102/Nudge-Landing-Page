@@ -9,7 +9,7 @@ const FAQ_ITEMS = [
   {
     question: "Why only one match a day?",
     answer:
-      "Because more options doesn't mean better outcomes. One thoughtful match a day means less burnout and more meaningful conversations.",
+      "Because more options doesn't mean better outcomes. Every evening at 7pm, everyone gets their one match at the same time — creating a shared moment instead of an anytime, anywhere distraction.",
   },
   {
     question: "How does the matching algorithm work?",
