@@ -1,10 +1,3 @@
-import { MessageCircle, Heart } from "lucide-react"
-
-const SOCIALS = [
-  { label: "Twitter / X", href: "#", icon: MessageCircle },
-  { label: "Instagram", href: "#", icon: Heart },
-]
-
 export default function Footer() {
   return (
     <footer className="py-12 px-6" style={{ backgroundColor: "#65001E" }}>
@@ -23,20 +16,7 @@ export default function Footer() {
           One match. Every evening.
         </p>
 
-        <div className="flex items-center gap-4 mt-6">
-          {SOCIALS.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              aria-label={social.label}
-              className="text-white/60 hover:text-white transition-colors"
-            >
-              <social.icon size={20} />
-            </a>
-          ))}
-        </div>
-
-        <p className="text-white/40 text-xs mt-8">
+        <p className="text-white/40 text-xs mt-6">
           &copy; 2026 Nudge. All rights reserved.
         </p>
       </div>
