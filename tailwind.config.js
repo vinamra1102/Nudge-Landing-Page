@@ -29,6 +29,22 @@ export default {
         border: "hsl(340, 30%, 85%)",
         input: "hsl(340, 30%, 90%)",
       },
+      borderRadius: {
+        xl: "calc(0.75rem + 4px)",
+        "2xl": "calc(1rem + 6px)",
+        "3xl": "calc(1.5rem + 8px)",
+      },
+      keyframes: {
+        "fade-rise": {
+          from: { opacity: "0", transform: "translateY(24px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        "fade-rise": "fade-rise 0.8s ease-out both",
+        "fade-rise-delay": "fade-rise 0.8s ease-out 0.2s both",
+        "fade-rise-delay-2": "fade-rise 0.8s ease-out 0.4s both",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
