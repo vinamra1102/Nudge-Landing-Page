@@ -1,43 +1,31 @@
 import { useState, type FormEvent } from "react"
 import { Loader2 } from "lucide-react"
-import { submitToWaitlist, isValidEmail } from "@/lib/waitlist"
 
-type Status = "idle" | "loading" | "success" | "duplicate" | "error"
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+type Status = "idle" | "loading" | "success" | "error-invalid" | "error-network"
 
 export default function FoundingMember() {
   const [email, setEmail] = useState("")
   const [status, setStatus] = useState<Status>("idle")
-  const [errorMessage, setErrorMessage] = useState("")
 
-  async function handleSubmit(e: FormEvent) {
+  function handleSubmit(e: FormEvent) {
     e.preventDefault()
     if (status === "loading") return
 
-    if (!isValidEmail(email)) {
-      setStatus("error")
-      setErrorMessage("Please enter a valid email")
+    if (!EMAIL_REGEX.test(email.trim())) {
+      setStatus("error-invalid")
       return
     }
 
     setStatus("loading")
-    setErrorMessage("")
 
-    const result = await submitToWaitlist(email, "founding_member")
-
-    if (result.success) {
-      setStatus(result.duplicate ? "duplicate" : "success")
-      return
-    }
-
-    setStatus("error")
-    setErrorMessage(
-      result.error === "invalid_email"
-        ? "Please enter a valid email"
-        : "Something went wrong, please try again"
-    )
+    setTimeout(() => {
+      setStatus("success")
+    }, 800)
   }
 
-  const isDone = status === "success" || status === "duplicate"
+  const isDone = status === "success"
 
   return (
     <section
@@ -69,9 +57,7 @@ export default function FoundingMember() {
             className="text-white text-lg mt-10 animate-fade-rise"
             style={{ fontFamily: "'Fredoka', sans-serif" }}
           >
-            {status === "duplicate"
-              ? "You're already on the founding list!"
-              : "You're on the founding list! 🎉"}
+            You're on the founding list! 🎉
           </p>
         ) : (
           <>
@@ -87,9 +73,8 @@ export default function FoundingMember() {
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value)
-                    if (status === "error") {
+                    if (status === "error-invalid") {
                       setStatus("idle")
-                      setErrorMessage("")
                     }
                   }}
                   disabled={status === "loading"}
@@ -114,8 +99,8 @@ export default function FoundingMember() {
               </button>
             </form>
 
-            {status === "error" && (
-              <p className="text-sm mt-3 text-[#FFBACF]">{errorMessage}</p>
+            {status === "error-invalid" && (
+              <p className="text-sm mt-3 text-[#B91C1C]">Please enter a valid email</p>
             )}
           </>
         )}

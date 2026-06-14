@@ -1,43 +1,31 @@
 import { useState, type FormEvent } from "react"
 import { Loader2 } from "lucide-react"
-import { submitToWaitlist, isValidEmail } from "@/lib/waitlist"
 
-type Status = "idle" | "loading" | "success" | "duplicate" | "error"
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+type Status = "idle" | "loading" | "success" | "error-invalid" | "error-network"
 
 export default function HeroSection() {
   const [email, setEmail] = useState("")
   const [status, setStatus] = useState<Status>("idle")
-  const [errorMessage, setErrorMessage] = useState("")
 
-  async function handleSubmit(e: FormEvent) {
+  function handleSubmit(e: FormEvent) {
     e.preventDefault()
     if (status === "loading") return
 
-    if (!isValidEmail(email)) {
-      setStatus("error")
-      setErrorMessage("Please enter a valid email")
+    if (!EMAIL_REGEX.test(email.trim())) {
+      setStatus("error-invalid")
       return
     }
 
     setStatus("loading")
-    setErrorMessage("")
 
-    const result = await submitToWaitlist(email, "hero")
-
-    if (result.success) {
-      setStatus(result.duplicate ? "duplicate" : "success")
-      return
-    }
-
-    setStatus("error")
-    setErrorMessage(
-      result.error === "invalid_email"
-        ? "Please enter a valid email"
-        : "Something went wrong, please try again"
-    )
+    setTimeout(() => {
+      setStatus("success")
+    }, 800)
   }
 
-  const isDone = status === "success" || status === "duplicate"
+  const isDone = status === "success"
 
   return (
     <section className="relative z-10 flex flex-col items-center text-center px-6 pt-32 pb-40">
@@ -59,9 +47,7 @@ export default function HeroSection() {
           className="text-white text-lg mt-10 animate-fade-rise"
           style={{ fontFamily: "'Fredoka', sans-serif" }}
         >
-          {status === "duplicate"
-            ? "You're already on the list!"
-            : "You're on the list! 🎉"}
+          You're on the list! 🎉
         </p>
       ) : (
         <>
@@ -77,9 +63,8 @@ export default function HeroSection() {
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value)
-                  if (status === "error") {
+                  if (status === "error-invalid") {
                     setStatus("idle")
-                    setErrorMessage("")
                   }
                 }}
                 disabled={status === "loading"}
@@ -104,8 +89,8 @@ export default function HeroSection() {
             </button>
           </form>
 
-          {status === "error" && (
-            <p className="text-sm mt-3 text-[#FFBACF]">{errorMessage}</p>
+          {status === "error-invalid" && (
+            <p className="text-sm mt-3 text-[#B91C1C]">Please enter a valid email</p>
           )}
         </>
       )}
