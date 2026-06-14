@@ -23,7 +23,7 @@ const REASONS = [
 
 export default function WhyNudge() {
   return (
-    <section id="why-nudge" className="py-24 px-6 bg-white">
+    <section id="why-nudge" className="py-24 px-6 bg-[#FFF5F7]">
       <div className="max-w-6xl mx-auto">
         <h2
           className="text-4xl md:text-5xl font-semibold text-center"

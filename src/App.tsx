@@ -36,6 +36,7 @@ function App() {
       <WhyNudge />
       <FoundingMember />
       <FAQ />
+      <div className="h-px bg-white/10 max-w-4xl mx-auto" />
       <Footer />
     </>
   )
