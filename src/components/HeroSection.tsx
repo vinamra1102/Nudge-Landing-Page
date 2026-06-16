@@ -34,23 +34,41 @@ export default function HeroSection({ onJoin, wasAlreadyJoined }: HeroSectionPro
   const isDone = status === "success"
 
   return (
-    <section className="relative z-10 flex flex-col items-center text-center px-6 pt-32 pb-40">
-      <h1
-        className="text-5xl sm:text-7xl md:text-8xl leading-[0.95] tracking-tight max-w-5xl font-bold text-white animate-fade-rise"
-        style={{ fontFamily: "'Fredoka', sans-serif" }}
-      >
-        One match.{" "}
-        <em className="not-italic text-white/70">Every evening.</em>
-      </h1>
+    <section className="relative z-10 flex flex-col items-center text-center px-6 pt-28 pb-32">
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle at 40% 50%, rgba(255,186,207,0.35) 0%, rgba(176,93,118,0.2) 50%, transparent 70%)",
+        }}
+      />
 
-      <p className="text-white/85 text-base sm:text-lg max-w-2xl mt-8 leading-relaxed animate-fade-rise-delay">
+      <div
+        className="absolute top-20 right-10 w-72 h-72 rounded-full blur-2xl pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(255,186,207,0.25) 0%, rgba(176,93,118,0.12) 100%)",
+        }}
+      />
+
+      <div className="relative">
+        <h1
+          className="text-5xl sm:text-7xl md:text-8xl leading-[0.95] tracking-tight max-w-5xl font-bold text-white animate-fade-rise"
+          style={{ fontFamily: "'Fredoka', sans-serif" }}
+        >
+          One match.{" "}
+          <span style={{ color: "#FFBACF" }}>Every evening.</span>
+        </h1>
+      </div>
+
+      <p className="relative text-white/85 text-base sm:text-lg max-w-2xl mt-6 leading-relaxed animate-fade-rise-delay">
         No endless swiping. No decision fatigue. Just one thoughtfully chosen
         match, delivered daily — starting in Bangalore.
       </p>
 
       {isDone ? (
         <p
-          className="text-white text-lg mt-10 animate-fade-rise"
+          className="text-white text-lg mt-8 animate-fade-rise"
           style={{ fontFamily: "'Fredoka', sans-serif" }}
         >
           You're on the list! 🎉
@@ -59,7 +77,7 @@ export default function HeroSection({ onJoin, wasAlreadyJoined }: HeroSectionPro
         <>
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col sm:flex-row items-center gap-3 mt-10 w-full max-w-lg animate-fade-rise-delay-2"
+            className="relative flex flex-col sm:flex-row items-center gap-3 mt-8 w-full max-w-lg animate-fade-rise-delay-2"
           >
             <div className="liquid-glass-input rounded-full flex-1 w-full sm:w-auto">
               <input
@@ -81,7 +99,7 @@ export default function HeroSection({ onJoin, wasAlreadyJoined }: HeroSectionPro
             <button
               type="submit"
               disabled={status === "loading"}
-              className="rounded-full px-10 py-4 text-sm font-medium hover:bg-[#7a0026] hover:scale-[1.03] transition-all whitespace-nowrap inline-flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+              className="rounded-full px-10 py-4 text-sm font-medium hover:scale-[1.03] transition-all whitespace-nowrap inline-flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
               style={{ backgroundColor: "#65001E", color: "#FFE9EC" }}
             >
               {status === "loading" ? (

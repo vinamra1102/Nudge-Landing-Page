@@ -35,17 +35,29 @@ export default function FoundingMember({ onJoin, wasAlreadyJoined }: FoundingMem
   const joinedViaHero = wasAlreadyJoined && status === "success" && email === ""
 
   return (
-    <section
-      className="py-20 px-6 rounded-t-[3rem]"
-      style={{ backgroundColor: "#65001E" }}
-    >
-      <div className="max-w-3xl mx-auto text-center">
-        <span
-          className="inline-block rounded-full px-4 py-1 text-xs font-semibold tracking-wide mb-4"
-          style={{ backgroundColor: "#FFBACF", color: "#65001E" }}
+    <section className="relative py-20 px-6 rounded-t-[3rem] overflow-hidden">
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(135deg, #65001E 0%, #4d0017 50%, #65001E 100%)",
+        }}
+      />
+      <div
+        className="absolute top-[-40px] right-[-40px] w-64 h-64 rounded-full blur-3xl pointer-events-none"
+        style={{ background: "rgba(255,186,207,0.15)" }}
+      />
+      <div
+        className="absolute bottom-[-60px] left-[-30px] w-72 h-72 rounded-full blur-3xl pointer-events-none"
+        style={{ background: "rgba(176,93,118,0.12)" }}
+      />
+
+      <div className="relative max-w-3xl mx-auto text-center">
+        <p
+          className="text-xs tracking-widest uppercase mb-4 font-medium"
+          style={{ color: "#FFBACF" }}
         >
-          🎉 Limited Spots
-        </span>
+          Limited Spots
+        </p>
 
         <h2
           className="text-3xl md:text-4xl font-semibold text-white"

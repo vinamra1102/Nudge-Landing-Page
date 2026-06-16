@@ -3,6 +3,7 @@ import Header from './components/Header'
 import HeroSection from './components/HeroSection'
 import HowItWorks from './components/HowItWorks'
 import WhyNudge from './components/WhyNudge'
+import DailyMatchJourney from './components/DailyMatchJourney'
 import FoundingMember from './components/FoundingMember'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
@@ -36,6 +37,7 @@ function App() {
       </section>
 
       <HowItWorks />
+      <DailyMatchJourney />
       <WhyNudge />
       <FoundingMember onJoin={() => setHasJoinedWaitlist(true)} wasAlreadyJoined={hasJoinedWaitlist} />
       <FAQ />

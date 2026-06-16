@@ -37,6 +37,12 @@ export default function FAQ() {
   return (
     <section id="faq" className="py-24 px-6" style={{ backgroundColor: "#FFE9EC" }}>
       <div className="max-w-2xl mx-auto">
+        <p
+          className="text-xs tracking-widest uppercase text-center mb-3 font-medium"
+          style={{ color: "#B05D76" }}
+        >
+          FAQ
+        </p>
         <h2
           className="text-4xl md:text-5xl font-semibold text-center"
           style={{ fontFamily: "'Fredoka', sans-serif", color: "#65001E" }}
